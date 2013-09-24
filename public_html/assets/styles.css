@@ -1,0 +1,23 @@
+/* mobile css */
+#container{
+	width: 100%;
+	background-color: blue;
+	color: red;
+}
+
+@media (min-width: 48em) {
+/* tablet css, will inherit styles from mobile */
+	#container{
+		background-color: green;
+	}
+	
+
+}
+@media (min-width: 80em) {
+/* desktop css, will inherit styles from mobile and tablet */
+
+	#container{
+		background-color: red;
+	}
+
+}
