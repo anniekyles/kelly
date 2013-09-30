@@ -11,13 +11,13 @@
 |
 */
 Route::get('/', function(){
-	return View::make('topics')->with('topic',Topic::find(2));
+	return View::make('pages')->with('page',Pages::find(2));
 });
 
 //________________________________CONTENT ROUTES_____________________________________
 
 Route::get('posts/create', function(){
-	return View::make('postCreate')->with ('aTopics', DB::table('topics')->lists('name','id'));
+	return View::make('postCreate')->with ('aPages', DB::table('pages')->lists('name','id'));
 })->before('admin.permission');
 
 Route::post('posts', function(){
@@ -29,7 +29,7 @@ Route::post('posts', function(){
 	} else {
 		$oPost = Post::create(Input::all());
 		$oPost->save();
-		return Redirect::to('topics/'.Input::get('topic_id'));
+		return Redirect::to('pages/'.Input::get('page_id'));
 	}
 });
 
@@ -37,25 +37,25 @@ Route::get('posts/{id}', function($id){
 	return View::make('posts')->with('post',Post::find($id));
 });
 
-Route::get('topics/create', function(){
-	return View::make('topicCreate');
+Route::get('pages/create', function(){
+	return View::make('pageCreate');
 })->before('admin.permission');
 
-Route::post('topics', function(){
+Route::post('pages', function(){
 	$aRules = array('name'=>'required');
 	$validaor = Validator::make(Input::all(),$aRules);
 
 	if($validaor->fails()){
-		return Redirect::to('topics/create');
+		return Redirect::to('pages/create');
 	} else {
-		$oTopic = Topic::create(Input::all());
-		$oTopic->save();
-		return Redirect::to('topics/2');
+		$oPage = Page::create(Input::all());
+		$oPage->save();
+		return Redirect::to('pages/2');
 	}
 });
 
-Route::get('topics/{id}', function($id){
-	return View::make('topics')->with('topic',Topic::find($id));
+Route::get('pages/{id}', function($id){
+	return View::make('pages')->with('page',Page::find($id));
 });
 
 //________________________________USER ROUTES_____________________________________

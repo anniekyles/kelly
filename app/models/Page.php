@@ -1,6 +1,6 @@
 <?php
 
-class Topic extends Eloquent{
+class Page extends Eloquent{
 
 	public function posts(){
 		return $this->hasMany('Post');
@@ -8,6 +8,6 @@ class Topic extends Eloquent{
 
 
 	protected $fillable = array(
-		'name'
+		'title'
 		);
 }

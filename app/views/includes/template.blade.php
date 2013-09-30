@@ -28,7 +28,7 @@
   ================================================== -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -43,9 +43,11 @@
 	<h2>Ph 09 555 5555</h2>
 
 	<nav>
-		@foreach(Topic::all() as $topic)
-		<li>{{ HTML::link('topics/'.$topic->id, $topic->name) }}</li>
-		@endforeach
+		<ul>
+			@foreach(Page::all() as $page)
+			<li>{{ HTML::link('pages/'.$page->id, $page->title) }}</li>
+			@endforeach
+		</ul>
 	</nav>
 
 	@yield('content')
@@ -56,8 +58,7 @@
 		{{HTML::link('logout','Log Out', array('class'=>'button right'))}}
 		{{HTML::link('users/'.Auth::user()->id,'Your Details', array('class'=>'button right'))}}
 		@if(Auth::user()->admin === 1)
-			{{HTML::link('posts/create','Create a New Post', array('class'=>'button right'))}}
-			{{HTML::link('topics/create','Create a New Topic', array('class'=>'button right'))}}
+			{{HTML::link('sections/create','Create a New Section', array('class'=>'button right'))}}
 		@endif
 	@else
 		{{HTML::link('login','Admin', array('class'=>''))}}

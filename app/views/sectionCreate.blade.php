@@ -4,12 +4,11 @@
 
 <article>
 
-	<h2>Create A New Post</h2>
+	<h2>Create A New Section</h2>
 	
-	{{ Form::open(array('url' => 'posts', 'method' => 'post')) }}
+	{{ Form::open(array('url' => 'sections', 'method' => 'post')) }}
 
-	{{ Form::label('topic_id','Select a topic') }}
-	{{ Form::select('topic_id',$aTopics) }}
+	{{ Form::hidden('topic_id',1) }}
 
 	{{ Form::label('title', 'Title') }}
 	{{ Form::text('title', Input::old('title')) }}
@@ -22,7 +21,7 @@
 
 	<br class="group" />
 	{{ Form::reset('Reset') }}
-	{{ Form::submit('Create Post') }}
+	{{ Form::submit('Create Section') }}
 
 	{{ Form::close() }}
 
