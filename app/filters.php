@@ -38,6 +38,17 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('permission', function($route, $request, $intendedID){
+	if ($intendedID != Auth::user()->id){
+		return Response::view('errors.403', array(), 403);
+	}
+});
+
+Route::filter('admin.permission', function(){
+	if (Auth::user()->admin === 0){
+		return Response::view('errors.403', array(), 403);
+	}
+});
 
 Route::filter('auth.basic', function()
 {
